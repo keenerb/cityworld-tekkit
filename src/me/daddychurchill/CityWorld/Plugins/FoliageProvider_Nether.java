@@ -12,7 +12,7 @@ public class FoliageProvider_Nether extends FoliageProvider_Decayed {
 	public FoliageProvider_Nether(Random random) {
 		super(random);
 	}
-	
+	//testing
 	private final static Material air = Material.AIR;
 	private final static Material glow = Material.GLOWSTONE;
 	private final static Material glass = Material.GLASS;
