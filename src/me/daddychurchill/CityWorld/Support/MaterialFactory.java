@@ -11,7 +11,7 @@ public abstract class MaterialFactory {
 	protected Boolean decayed;
 	protected Random random;
 	
-	protected double decayOdds = 0.30;
+	protected double decayOdds = 0.70;
 	protected byte airId = (byte) Material.AIR.getId();
 	
 	public MaterialFactory(Random rand, boolean decay) {

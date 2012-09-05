@@ -15,7 +15,10 @@ public class FoliageProvider_Decayed extends FoliageProvider {
 	
 	@Override
 	public boolean generateTree(WorldGenerator generator, RealChunk chunk, int x, int y, int z, LigneousType ligneousType) {
-		if (likelyFlora(generator, random)) {
+		//if (likelyFlora(generator, random)) {
+		double primary = random.nextDouble();
+		
+		if (primary > 0.65) {
 			return generateTree(chunk, random, x, y, z, ligneousType, log, Material.AIR, Material.AIR);
 		} else
 			return false;
@@ -29,10 +32,25 @@ public class FoliageProvider_Decayed extends FoliageProvider {
 			switch (herbaceousType) {
 			case GRASS:
 			case FERN:
-				chunk.setBlock(x, y, z, Material.DEAD_BUSH);
-				return true;
+				if (random.nextDouble() > 0.85) {
+					chunk.setBlock(x, y, z, Material.DEAD_BUSH);
+					    return true;
+					}
 			case COVER:
 			case CACTUS:
+								if (random.nextDouble() > 0.98) {
+										//chunk.setBlock(x, y - 1, z, Material.SAND);
+					                    chunk.setBlock(x, y, z, Material.CACTUS);
+					                    chunk.setBlock(x, y + 1, z, Material.CACTUS);
+					                    if (random.nextDouble() > 0.75) {
+					                            chunk.setBlock(x, y + 2, z, Material.CACTUS);
+					                    } else {
+					                            chunk.setBlock(x, y + 2, z, Material.CACTUS);
+					                            chunk.setBlock(x, y + 3, z, Material.CACTUS);
+					                    }
+					
+									}
+									break;
 			case FLOWER_RED:
 			case FLOWER_YELLOW:
 			default:

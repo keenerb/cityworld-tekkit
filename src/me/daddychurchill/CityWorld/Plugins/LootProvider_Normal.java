@@ -16,9 +16,9 @@ public class LootProvider_Normal extends LootProvider {
 		// which mix?
 		switch (lootLocation) {
 		case BUNKER:
-			return createTreasures(generator, random, Material.IRON_SWORD, Material.GOLD_BOOTS, 2, 1);
+			return createTreasures(generator, random, Material.COOKIE, Material.ROTTEN_FLESH, 2, 1);
 		case MINE:
-			return createTreasures(generator, random, Material.FLINT, Material.ROTTEN_FLESH, 5, 1);
+			return createTreasures(generator, random, Material.IRON_INGOT, Material.STONE_AXE, 5, 1);
 		default: //case SEWER:
 			return createTreasures(generator, random, Material.IRON_SPADE, Material.COAL, 5, 2);
 		}

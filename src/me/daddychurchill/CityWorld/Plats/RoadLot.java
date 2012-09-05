@@ -34,7 +34,8 @@ public class RoadLot extends ConnectedLot {
 	protected final static Material lightpostMaterial = Material.FENCE;
 	protected final static Material sewerWallMaterial = Material.MOSSY_COBBLESTONE;
 	//protected final static Material vineMaterial = Material.VINE;
-
+	protected static byte gapId = (byte) Material.SAND.getId();
+	protected final static byte sandId = (byte) Material.SAND.getId();
 	protected final static byte airId = (byte) airMaterial.getId();
 	protected final static byte sewerFloorId = (byte) Material.COBBLESTONE.getId();
 	protected final static byte sewerWallId = (byte) sewerWallMaterial.getId();
@@ -1166,12 +1167,12 @@ public class RoadLot extends ConnectedLot {
 	}
 	
 	protected void decaySidewalk(RealChunk chunk, int x1, int x2, int y, int z1, int z2) {
-		int amount = (x2 - x1) * (z2 - z1) / 10;
+		int amount = (x2 - x1) * (z2 - z1) / 5;
 		while (amount > 0) {
 			int x = chunkRandom.nextInt(x2 - x1) + x1;
 			int z = chunkRandom.nextInt(z2 - z1) + z1;
 			if (chunkRandom.nextBoolean())
-				chunk.setBlock(x, y, z, airId);
+				chunk.setBlock(x, y, z, gapId);
 			else
 				chunk.setBlock(x, y, z, Material.STEP.getId(), (byte) 3);
 			amount--;

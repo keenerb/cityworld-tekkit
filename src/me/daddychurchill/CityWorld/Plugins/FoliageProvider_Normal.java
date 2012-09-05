@@ -41,7 +41,7 @@ public class FoliageProvider_Normal extends FoliageProvider {
 				chunk.setBlocks(x, y, y + random.nextInt(3) + 2, z, Material.CACTUS);
 				break;
 			case COVER:
-				generator.oreProvider.dropSnow(generator, chunk, x, y + 5, z);
+				
 				break;
 			}
 		}

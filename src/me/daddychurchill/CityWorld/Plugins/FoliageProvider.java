@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.TreeType;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import forge.bukkit.BukkitForgeHooks.ForgeBlockChangeDelegate;
 
 public abstract class FoliageProvider {
 	
@@ -199,13 +200,17 @@ public abstract class FoliageProvider {
 	protected final static Material leaves = Material.LEAVES;
 	protected final static int leavesId = leaves.getId();
 	
-	private class TreeVanillaDelegate implements BlockChangeDelegate {
+	private class TreeVanillaDelegate implements ForgeBlockChangeDelegate {
 		protected World world;
 		protected RealChunk chunk;
 		
 		public TreeVanillaDelegate(RealChunk chunk) {
 			this.chunk = chunk;
 			this.world = chunk.world;
+		}
+		
+		public net.minecraft.server.World unwrap() {
+			return ((org.bukkit.craftbukkit.CraftWorld)this.world).getHandle();
 		}
 
 		@Override

@@ -183,7 +183,7 @@ public class FarmLot extends ConnectedLot {
 		else if (cropType == cropNetherwart)
 			plowField(generator, chunk, chunkRandom, croplevel, matSoul, 0, matAir, cropType, chunkRandom.nextInt(4), 1, 2, 1);
 		else if (cropType == cropDeadBush)
-			plowField(generator, chunk, chunkRandom, croplevel, matDirt, 0, matAir, cropType, 0, 1, 2, 1);
+			plowField(generator, chunk, chunkRandom, croplevel, matSand, 0, matAir, cropType, 0, 1, 2, 1);
 		else {
 			
 			// watered crops
@@ -204,7 +204,14 @@ public class FarmLot extends ConnectedLot {
 					fallowField = true;
 			} else {
 				if (cropType == cropNone)
-					plowField(generator, chunk, chunkRandom, croplevel, matDirt, 0, matAir, matAir, 0, 1, 2, 1);
+					if(generator.settings.includeDecayedNature) {
+					plowField(generator, chunk, chunkRandom, croplevel, matSand, 0, matAir, matAir, 0, 1, 2, 1);
+					}
+					else {
+						plowField(generator, chunk, chunkRandom, croplevel, matDirt, 0, matAir, matAir, 0, 1, 2, 1);
+					}
+						
+					
 				else
 					fallowField = true;
 			}
@@ -212,7 +219,12 @@ public class FarmLot extends ConnectedLot {
 		
 		// just in case nothing happened
 		if (fallowField)
-			plowField(generator, chunk, chunkRandom, croplevel, matDirt, 0, matAir, cropType, 0, 1, 2, 1);
+			if(generator.settings.includeDecayedNature){ 
+			plowField(generator, chunk, chunkRandom, croplevel, matSand, 0, matAir, cropType, 0, 1, 2, 1);
+			}
+			else {
+				plowField(generator, chunk, chunkRandom, croplevel, matDirt, 0, matAir, cropType, 0, 1, 2, 1);
+			}
 	}
 
 	private void plowField(WorldGenerator generator, RealChunk chunk, Random random, int croplevel, 

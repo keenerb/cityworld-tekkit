@@ -23,7 +23,7 @@ public class UnfinishedBuildingLot extends BuildingLot {
 	private final static Material stairMaterial = Material.WOOD_STAIRS;
 	private final static Material wallMaterial = Material.SMOOTH_BRICK;
 	private final static Material ceilingMaterial = Material.STONE;
-	
+	private final static Material sandMaterial = Material.SAND;
 	private final static int fenceHeight = 3;
 	private final static int inset = 2;
 	
@@ -76,10 +76,13 @@ public class UnfinishedBuildingLot extends BuildingLot {
 			}
 			
 			// one floor please
-			drawWalls(chunk, context, floorAt, FloorHeight, 0, 0, false,
-					dirtMaterial, dirtMaterial, neighborBasements);
-			drawWalls(chunk, context, floorAt, FloorHeight, 1, 1, false,
-					wallMaterial, wallMaterial, neighborBasements);
+			if(generator.settings.includeDecayedNature) {
+			drawWalls(chunk, context, floorAt, FloorHeight, 0, 0, false, sandMaterial, sandMaterial, neighborBasements);
+			}
+			else {
+			drawWalls(chunk, context, floorAt, FloorHeight, 0, 0, false, dirtMaterial, dirtMaterial, neighborBasements);
+			}
+			drawWalls(chunk, context, floorAt, FloorHeight, 1, 1, false, wallMaterial, wallMaterial, neighborBasements);
 			
 			// ceilings if needed
 			if (!unfinishedBasementOnly) {
